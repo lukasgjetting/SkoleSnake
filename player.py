@@ -10,6 +10,7 @@ class Player:
 		self.length = 5
 		self.coords = [pos]
 		self.direction = 0
+		self.turnSpeed = 15
 
 	def update(self):
 		# Tilføj et nyt punkt til slangen
@@ -26,3 +27,9 @@ class Player:
 	def render(self, screen):
 		for coord in self.coords:
 			pygame.draw.ellipse(screen, self.color, (coord.x, coord.y, self.size, self.size), 1)
+
+	def turn(self, direction):
+		if(direction == "l"):
+			self.direction -= self.turnSpeed
+		elif(direction == "r"):
+			self.direction += self.turnSpeed
