@@ -4,6 +4,8 @@ from point import *
 
 pygame.init()
 
+clock = pygame.time.Clock()
+
 size = width, height = 480, 480
 
 screen = pygame.display.set_mode(size)
@@ -15,6 +17,8 @@ while 1:
         if event.type == pygame.QUIT:
         	sys.exit()
 
+    screen.fill((0,0,0))
     player.render(screen)
-
+    player.update()
     pygame.display.flip()
+    clock.tick(15)

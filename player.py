@@ -1,4 +1,4 @@
-import pygame
+import pygame, math
 from point import *
 
 class Player:
@@ -12,7 +12,16 @@ class Player:
 		self.direction = 0
 
 	def update(self):
-		print("")
+		# Tilføj et nyt punkt til slangen
+		self.coords.insert(0, self.calculateNewPos())
+		print(len(self.coords))
+		if(self.length <= len(self.coords)):
+			self.coords.pop()
+
+	def calculateNewPos(self):
+		newPos= Point(self.pos.x+self.size*math.cos(math.radians(self.direction)), self.pos.y+self.size*math.sin(math.radians(self.direction)))
+		self.pos = newPos
+		return self.pos
 
 	def render(self, screen):
 		for coord in self.coords:
