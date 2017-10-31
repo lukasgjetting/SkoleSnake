@@ -13,8 +13,8 @@ class Food:
 	def collidesWithPlayer(self, player):
 		if(
 			player.pos.x > self.pos.x - player.size and
-			player.pos.y > self.pos.y - player.size and
 			player.pos.x < self.pos.x + self.size and
+			player.pos.y > self.pos.y - player.size and
 			player.pos.y < self.pos.y + self.size
 		):
 			return True

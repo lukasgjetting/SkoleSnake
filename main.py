@@ -27,14 +27,16 @@ while 1:
 
 	screen.fill((255,255,255))
 
-	player.update()
-
 	if(food.collidesWithPlayer(player)):
 		player.length += 1
 		food = Food(480, 480)
+
+	player.update()
 
 	player.render(screen)
 	food.render(screen)
 
 	pygame.display.flip()
+
+	
 	clock.tick(15)
