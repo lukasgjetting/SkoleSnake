@@ -1,6 +1,7 @@
 import sys, pygame
 from player import *
 from point import *
+from food import *
 
 pygame.init()
 
@@ -11,6 +12,7 @@ size = width, height = 480, 480
 screen = pygame.display.set_mode(size)
 
 player = Player(Point(240,240), 1, 10)
+food = Food(480, 480)
 
 while 1:
 	for event in pygame.event.get():
@@ -23,8 +25,16 @@ while 1:
 	if keys[pygame.K_RIGHT]:
 		player.turn("r")
 
-	screen.fill((0,0,0))
-	player.render(screen)
+	screen.fill((255,255,255))
+
 	player.update()
+
+	if(food.collidesWithPlayer(player)):
+		player.length += 1
+		food = Food(480, 480)
+
+	player.render(screen)
+	food.render(screen)
+
 	pygame.display.flip()
 	clock.tick(15)
