@@ -3,16 +3,19 @@ from player import *
 from point import *
 from food import *
 
+GAME_WIDTH = 480
+GAME_HEIGHT = 480
+
 pygame.init()
 
 clock = pygame.time.Clock()
 
-size = width, height = 480, 480
+size = width, height = GAME_WIDTH, GAME_HEIGHT
 
 screen = pygame.display.set_mode(size)
 
-player = Player(Point(240,240), 1, 10)
-food = Food(480, 480)
+player = Player(Point(GAME_WIDTH/2,GAME_HEIGHT/2), 1, 10)
+food = Food(GAME_WIDTH, GAME_HEIGHT)
 
 while 1:
 	for event in pygame.event.get():
@@ -29,7 +32,7 @@ while 1:
 
 	if(food.collidesWithPlayer(player)):
 		player.length += 1
-		food = Food(480, 480)
+		food = Food(GAME_WIDTH, GAME_HEIGHT)
 
 	player.update()
 

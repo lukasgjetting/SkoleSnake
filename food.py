@@ -3,7 +3,7 @@ from point import *
 
 class Food:
 	def __init__(self, maxX, maxY):
-		self.pos = Point(int(random.random()*maxX), int(random.random()*maxY))
+		self.pos = Point(int(random.random()*(maxX*0.8)+(maxX*0.1)), int(random.random()*maxY))
 		self.size = 15
 		self.color = (0, 0, 255)
 
