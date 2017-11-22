@@ -1,21 +1,18 @@
-import sys, pygame
+import sys, pygame, constants
 from player import *
 from point import *
 from food import *
-
-GAME_WIDTH = 480
-GAME_HEIGHT = 480
 
 pygame.init()
 
 clock = pygame.time.Clock()
 
-size = width, height = GAME_WIDTH, GAME_HEIGHT
+size = width, height = constants.GAME_WIDTH, constants.GAME_HEIGHT
 
 screen = pygame.display.set_mode(size)
 
-player = Player(Point(GAME_WIDTH/2,GAME_HEIGHT/2), 1, 10)
-food = Food(GAME_WIDTH, GAME_HEIGHT)
+player = Player(Point(constants.GAME_WIDTH/2,constants.GAME_HEIGHT/2), 1, 10)
+food = Food(constants.GAME_WIDTH, constants.GAME_HEIGHT)
 
 while 1:
 	for event in pygame.event.get():
@@ -32,7 +29,7 @@ while 1:
 
 	if(food.collidesWithPlayer(player)):
 		player.length += 1
-		food = Food(GAME_WIDTH, GAME_HEIGHT)
+		food = Food(constants.GAME_WIDTH, constants.GAME_HEIGHT)
 
 	player.update()
 

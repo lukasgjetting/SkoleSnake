@@ -1,4 +1,4 @@
-import pygame, math
+import pygame, math, constants
 from point import *
 
 class Player:
@@ -20,6 +20,19 @@ class Player:
 
 	def calculateNewPos(self):
 		newPos= Point(self.pos.x+self.size*math.cos(math.radians(self.direction)), self.pos.y+self.size*math.sin(math.radians(self.direction)))
+		
+		# Wrap x-axis
+		if(newPos.x > constants.GAME_WIDTH):
+			newPos.x -= constants.GAME_WIDTH;
+		elif(newPos.x < 0):
+			newPos.x += constants.GAME_WIDTH
+
+		# Wrap y-axis
+		if(newPos.y > constants.GAME_HEIGHT):
+			newPos.y -= constants.GAME_WIDTH
+		elif(newPos.y < 0):
+			newPos.y += constants.GAME_HEIGHT
+
 		self.pos = newPos
 		return self.pos
 
