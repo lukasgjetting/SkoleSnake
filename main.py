@@ -13,7 +13,7 @@ screen = pygame.display.set_mode(size)
 
 player = Player(Point(constants.GAME_WIDTH/2,constants.GAME_HEIGHT/2), 1, 10)
 food = Food(constants.GAME_WIDTH, constants.GAME_HEIGHT)
-
+	
 while 1:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -25,13 +25,18 @@ while 1:
 	if keys[pygame.K_RIGHT]:
 		player.turn("r")
 
-	screen.fill((255,255,255))
 
+	# Update food
 	if(food.collidesWithPlayer(player)):
 		player.length += 1
 		food = Food(constants.GAME_WIDTH, constants.GAME_HEIGHT)
+		#while True:
+		#	print("xd")
 
+	# Update player
 	player.update()
+
+	screen.fill((255,255,255))
 
 	player.render(screen)
 	food.render(screen)

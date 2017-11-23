@@ -33,12 +33,15 @@ class Player:
 		elif(newPos.y < 0):
 			newPos.y += constants.GAME_HEIGHT
 
+#		for i in range(self.length-1):
+#			print(self.coords[i])
+
 		self.pos = newPos
 		return self.pos
 
 	def render(self, screen):
 		for coord in self.coords:
-			pygame.draw.ellipse(screen, self.color, (coord.x, coord.y, self.size, self.size), 1)
+			pygame.draw.ellipse(screen, self.color, (coord.x-(self.size/2), coord.y-(self.size/2), self.size, self.size), 1)
 
 	def turn(self, direction):
 		if(direction == "l"):

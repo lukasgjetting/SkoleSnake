@@ -1,4 +1,4 @@
-import random, pygame
+import random, pygame, utils
 from point import *
 
 class Food:
@@ -8,13 +8,13 @@ class Food:
 		self.color = (0, 0, 255)
 
 	def render(self, screen):
-		pygame.draw.ellipse(screen, self.color, (self.pos.x, self.pos.y, self.size, self.size), 1)
+		pygame.draw.ellipse(screen, self.color, (self.pos.x-(self.size/2), self.pos.y-(self.size/2), self.size, self.size), 1)
 
 	def collidesWithPlayer(self, player):
 		if(
-			player.pos.x > self.pos.x - player.size and
-			player.pos.x < self.pos.x + self.size and
-			player.pos.y > self.pos.y - player.size and
-			player.pos.y < self.pos.y + self.size
+			utils.equalsWithMargin(self.pos.x, player.pos.x, self.size/2+player.size/4) and
+			utils.equalsWithMargin(self.pos.y, player.pos.y, self.size/2+player.size/4)
 		):
 			return True
+		else:
+			return False
