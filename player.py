@@ -14,7 +14,8 @@ class Player:
 
 	def update(self):
 		# Tilføj et nyt punkt til slangen
-		self.coords.insert(0, self.calculateNewPos())
+		if(self.length >= len(self.coords)):
+			self.coords.insert(0, self.calculateNewPos())
 		if(self.length <= len(self.coords)):
 			self.coords.pop()
 
