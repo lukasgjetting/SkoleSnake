@@ -60,7 +60,7 @@ while 1:
 				if(letterIndex == len(word)):
 					word = ""
 			else:
-				player.length -= 1
+				player.hp -= 1
 				foods.append(Food(food.letter))
 
 

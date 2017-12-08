@@ -21,6 +21,11 @@ class Player:
 		if(self.length <= len(self.coords)):
 			self.coords.pop()
 
+		if(self.hp == 0):
+			print("You lose!")
+			print("Final score: " + str(self.length))
+			exit()
+
 	def calculateNewPos(self):
 		newPos= Point(self.pos.x+self.size*math.cos(math.radians(self.direction)), self.pos.y+self.size*math.sin(math.radians(self.direction)))
 		
@@ -48,7 +53,7 @@ class Player:
 		
 		x = 20
 		for i in range(self.hp):
-			screen.blit(self.heartImage, (x, constants.GAME_HEIGHT-20, 32, 32))
+			screen.blit(self.heartImage, (x, constants.GAME_HEIGHT-52, 32, 32))
 			x = x + 52
 
 	def turn(self, direction):
