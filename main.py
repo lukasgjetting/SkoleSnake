@@ -1,4 +1,4 @@
-import sys, pygame, constants, utils, time
+import sys, pygame, random, constants, utils, time
 from player import *
 from point import *
 from food import *
@@ -16,15 +16,22 @@ screen = pygame.display.set_mode(size)
 
 player = Player(Point(constants.GAME_WIDTH/2,constants.GAME_HEIGHT/2), 1, 10)
 
-word = "APPLE"
+word = ""
 letterIndex = 0
 letters = ""
-
-foods = utils.generateFoods(word, player.pos, 1)
+foods = None
+image = None
 
 pause = True
 
 while 1:
+	if(word == ""):
+		word = constants.WORDS[random.randint(0, len(constants.WORDS)-1)]
+		letterIndex = 0
+		letters = ""
+		foods = utils.generateFoods(word, player.pos, 1)
+		image = pygame.image.load("images/" + word + ".png")
+
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			sys.exit()
@@ -49,9 +56,16 @@ while 1:
 				letters += food.letter
 				letterIndex += 1
 				player.length += 1
+
+				if(letterIndex == len(word)):
+					word = ""
 			else:
 				player.length -= 1
+				foods.append(Food(food.letter))
 
+
+	screen.blit(image, image.get_rect())
+	
 	player.render(screen)
 
 	# Render food
