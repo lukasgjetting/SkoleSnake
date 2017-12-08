@@ -11,6 +11,8 @@ class Player:
 		self.coords = [pos]
 		self.direction = 0
 		self.turnSpeed = 15
+		self.hp = 3
+		self.heartImage = pygame.image.load("heart.png")
 
 	def update(self):
 		# Tilføj et nyt punkt til slangen
@@ -43,6 +45,11 @@ class Player:
 	def render(self, screen):
 		for coord in self.coords:
 			pygame.draw.ellipse(screen, self.color, (coord.x-(self.size/2), coord.y-(self.size/2), self.size, self.size), 1)
+		
+		x = 20
+		for i in range(self.hp):
+			screen.blit(self.heartImage, (x, constants.GAME_HEIGHT-20, 32, 32))
+			x = x + 52
 
 	def turn(self, direction):
 		if(direction == "l"):
